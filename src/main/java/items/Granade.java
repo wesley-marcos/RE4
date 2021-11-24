@@ -2,10 +2,9 @@ package items;
 
 public class Granade extends Item{
 
-    int typeGrenade;
-    int idGranade;
-    String typeGranade;
-    double rangeGranade;
-    double explosion_power;
-    String color;
+    public int idGranade;
+    public String typeGranade;
+    public double rangeGranade;
+    public double explosion_power;
+    public String color;
 }

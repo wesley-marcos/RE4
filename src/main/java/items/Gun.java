@@ -12,5 +12,6 @@ public class Gun extends Item{
     public int explosion;
     public int capacity_total;
     public int num_bulls_mag;
+    public int Item_idItem;
 
 }

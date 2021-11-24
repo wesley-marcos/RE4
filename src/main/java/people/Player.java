@@ -10,6 +10,11 @@ public class Player {
     public double pasetas;
     public int inventory;
 
+    public Player(int inventory) {
+        this.inventory = inventory;
+        inventory = 6;
+    }
+
     //Método para atirar
     public void shoot(int num_shoots, Gun gun){
         gun.num_bulls_mag -= num_shoots;

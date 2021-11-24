@@ -4,9 +4,9 @@ import people.Player;
 
 public class Heal extends Item{
 
-    int idHeal;
-    String typeHeal;
-    String effect;
+    public int idHeal;
+    public String typeHeal;
+    public String effect;
 
     public void helling(Player p, String typeHeal){
         //p.life =

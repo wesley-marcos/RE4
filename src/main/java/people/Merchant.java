@@ -41,13 +41,16 @@ public class Merchant extends ConnectionDAO {
     }
 
     //Método para comprar um item
-    public boolean buy(Gun gun){
+    /*
+    public boolean buy(Gun gun, Item item){
 
         connectToDB();
-        String sql = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql2 = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem, idGun) values(?, ?, ?, ?, ?)";
 
         try{
-            pst = con.prepareStatement(sql);
+
+            pst = con.prepareStatement(sql2);
             pst.setInt(1, gun.idGun);
             pst.setDouble(2, gun.fire_power);
             pst.setDouble(3, gun.firing_speed);
@@ -57,6 +60,14 @@ public class Merchant extends ConnectionDAO {
             pst.setInt(7, gun.explosion);
             pst.setInt(8, gun.capacity_total);
             pst.setInt(9, gun.num_bulls_mag);
+            pst.execute();
+
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, item.idItem);
+            pst.setString(4, item.nameItem);
+            pst.setDouble(2, item.valueItem);
+            pst.setString(3, item.typeItem);
+            pst.setInt(5, gun.idGun);
             pst.execute();
             sucesso = true;
 
@@ -75,7 +86,7 @@ public class Merchant extends ConnectionDAO {
 
         return sucesso;
     }
-
+*/
     //Método para upar um item
     public boolean upgrade(Gun gun, int id){
 

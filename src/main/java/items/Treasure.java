@@ -2,7 +2,7 @@ package items;
 
 public class Treasure extends Item{
 
-    int idTreasure;
-    String nomeTreasure;
-    double valueTreasure;
+    public int idTreasure;
+    public String nameTreasure;
+    public double valueTreasure;
 }

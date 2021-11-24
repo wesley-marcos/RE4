@@ -2,10 +2,11 @@ package items;
 
 public class Item {
 
-    int idItem;
-    double valueItem;
-    String typeItem;
-    String nameItem;
+    public int idItem;
+    public double valueItem;
+    public String typeItem;
+    public String nameItem;
+    public int idGun;
 
     //Método para mostrar os itens
     public void mostraInfo(){
