@@ -16,7 +16,7 @@ public class Buy_Treasure extends ConnectionDAO {
 
         connectToDB();
         String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem) values(?, ?, ?, ?)";
-        String sql5 = "INSERT INTO Treasure (idTreasure, nameTreasure, idItem) values(?, ?, ?)";
+        String sql5 = "INSERT INTO Treasure (idTreasures, nameTreasure, idItem) values(?, ?, ?)";
 
         try {
 
@@ -28,7 +28,7 @@ public class Buy_Treasure extends ConnectionDAO {
             pst.execute();
 
             pst = con.prepareStatement(sql5);
-            pst.setInt(1, tr.idTreasure);
+            pst.setInt(1, tr.idTreasures);
             pst.setString(2, tr.nameTreasure);
             pst.setInt(3, item.idItem);
             pst.execute();

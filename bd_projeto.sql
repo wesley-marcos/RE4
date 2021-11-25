@@ -31,6 +31,23 @@ CREATE TABLE IF NOT EXISTS Player (
 
 
 -- -----------------------------------------------------
+-- Criando Tabela "Item"
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS Item(
+  idItem INT NOT NULL,
+  valueItem DOUBLE NOT NULL,
+  typeItem VARCHAR(45) NOT NULL,
+  nameItem VARCHAR(45) NOT NULL,
+  idMerchant INT,
+  PRIMARY KEY (idItem),
+  CONSTRAINT fk_Item_Merchant1
+    FOREIGN KEY (idMerchant)
+    REFERENCES Merchant (idMerchant)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    );
+
+-- -----------------------------------------------------
 -- Criando Tabela "Gun"
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Gun (
@@ -43,36 +60,16 @@ CREATE TABLE IF NOT EXISTS Gun (
   explosion INT NOT NULL,
   capacity_total INT NOT NULL,
   num_bulls_mag INT NOT NULL,
- # Item_idItem INT,
- # Ammo_idAmmo INT,
-  PRIMARY KEY (idGun)
+  idItem INT NOT NULL,
+  Item_idItem INT,
+  PRIMARY KEY (idGun),  
+  CONSTRAINT fk_Gun_Item1
+    FOREIGN KEY (idItem)
+    REFERENCES Item (idItem)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
   );
   
-
--- -----------------------------------------------------
--- Criando Tabela "Item"
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Item(
-  idItem INT NOT NULL,
-  valueItem DOUBLE NOT NULL,
-  typeItem VARCHAR(45) NOT NULL,
-  nameItem VARCHAR(45) NOT NULL,
-  idMerchant INT,
-  idGun INT NOT NULL,
-  PRIMARY KEY (idItem),
-  CONSTRAINT fk_Item_Merchant1
-    FOREIGN KEY (idMerchant)
-    REFERENCES Merchant (idMerchant)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT fk_Gun_Item1
-    FOREIGN KEY (idGun)
-    REFERENCES Gun (idGun)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-    );
-
-
 -- -----------------------------------------------------
 -- Criando Tabela "Treasure"
 -- -----------------------------------------------------
@@ -139,7 +136,7 @@ CREATE TABLE IF NOT EXISTS Belong (
     ON UPDATE NO ACTION);
 
 select * from gun;
-select * from item;
-select * from granade;
-select * from heal;
-select * from treasure;
+#select * from item;
+#select * from granade;
+#select * from heal;
+#select * from treasure;

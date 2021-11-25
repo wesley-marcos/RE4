@@ -9,6 +9,8 @@ public class Principal {
 
     public static void main(String[] args) {
 
+        ArrayList<Item> itens = new ArrayList<>();
+
         Merchant m = new Merchant();
         Buy_Granade bg = new Buy_Granade();
         Buy_Gun bgun = new Buy_Gun();
@@ -57,7 +59,7 @@ public class Principal {
         ih1.valueItem = 500;
 
         Treasure t1 = new Treasure();
-        t1.idTreasure = 6;
+        t1.idTreasures = 6;
         t1.nameTreasure = "Salazar's Family Insignia";
 
         Item it1 = new Item();
@@ -66,85 +68,10 @@ public class Principal {
         it1.typeItem = "Treasure";
         it1.valueItem = 48000;
 
-
         bg.buy_granade(igr1, gr1);
-        //bgun.buy_gun(i1, g1);
-        //bh.buy_heal(ih1, h1);
-        //bt.buy_treasure(it1, t1);
-
-
-
-
-
-
-
-
-        /*
-
-        //Inserir
-        if(m.buy(g1, i1)){
-            System.out.println("Arma e item Inseridos!");
-        }
-        else{
-            System.out.println("Deu ruim na inserção.");
-        }
-
-        //Inserir
-        if(m.buy(g2, i2)){
-            System.out.println("Arma e item Inseridos!");
-        }
-        else{
-            System.out.println("Deu ruim na inserção.");
-        }
-
-        //Inserir
-        if(m.buy(g1, i1)){
-            System.out.println("Arma e item Inseridos!");
-        }
-        else{
-            System.out.println("Deu ruim na inserção.");
-        }
-
-        //Inserir
-        if(m.buy(g1, i1)){
-            System.out.println("Arma e item Inseridos!");
-        }
-        else{
-            System.out.println("Deu ruim na inserção.");
-        }
-
-        //Inserir
-        if(m.buy(g1, i1)){
-            System.out.println("Arma e item Inseridos!");
-        }
-        else{
-            System.out.println("Deu ruim na inserção.");
-        }
-
-
-        */
-
-        /*
-
-        //Alterar
-        g1.fire_power = 6.0;
-        if(m.upgrade(g1, 1)){
-            System.out.println("Livro Alterado!");
-        }
-        else{
-            System.out.println("Deu ruim na alteração.");
-        }
-
-        //Delete
-        if(m.sell(1)){
-            System.out.println("Livro Deletado!");
-        }
-        else{
-            System.out.println("Deu ruim na deletação.");
-        }
-
-
-        //Mostrarm.mostraInfo(g1);*/
+        bgun.buy_gun(i1, g1);
+        bh.buy_heal(ih1, h1);
+        bt.buy_treasure(it1, t1);
 
     }
 }

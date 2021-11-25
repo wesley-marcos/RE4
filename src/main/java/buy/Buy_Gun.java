@@ -14,10 +14,17 @@ public class Buy_Gun extends ConnectionDAO {
     public boolean buy_gun(Item item, Gun gun){
 
         connectToDB();
-        String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem, idGun) values(?, ?, ?, ?, ?)";
-        String sql3 = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem) values(?, ?, ?, ?)";
+        String sql3 = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try{
+
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, item.idItem);
+            pst.setDouble(2, item.valueItem);
+            pst.setString(3, item.typeItem);
+            pst.setString(4, item.nameItem);
+            pst.execute();
 
             pst = con.prepareStatement(sql3);
             pst.setInt(1, gun.idGun);
@@ -29,14 +36,7 @@ public class Buy_Gun extends ConnectionDAO {
             pst.setInt(7, gun.explosion);
             pst.setInt(8, gun.capacity_total);
             pst.setInt(9, gun.num_bulls_mag);
-            pst.execute();
-
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, item.idItem);
-            pst.setString(4, item.nameItem);
-            pst.setDouble(2, item.valueItem);
-            pst.setString(3, item.typeItem);
-            pst.setInt(5, gun.idGun);
+            pst.setInt(10,item.idItem);
             pst.execute();
             sucesso = true;
 
