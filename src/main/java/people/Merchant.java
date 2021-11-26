@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Merchant extends ConnectionDAO {
 
-    Item itens = new Item();
+    //Item itens = new Item();
 
     boolean sucesso = false;
 

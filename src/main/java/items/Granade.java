@@ -7,4 +7,9 @@ public class Granade extends Item{
     public double rangeGranade;
     public double explosion_power;
     public String color;
+
+    public Granade(int idItem) {
+        super(idItem);
+        idGranade = idItem;
+    }
 }

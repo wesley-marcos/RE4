@@ -1,4 +1,8 @@
 import buy.Buy_Granade;
+import control.Insert_Granade;
+import control.Insert_Gun;
+import control.Insert_Heal;
+import control.Insert_Treasure;
 import items.*;
 import buy.*;
 import people.Merchant;
@@ -20,6 +24,17 @@ public class Principal {
 
         ArrayList<Item> itens = new ArrayList<>();
 
+        Item [] itens2 = itens.toArray(new Item[2]);
+
+        Granade g2 = new Granade(2);
+
+        itens.add(g2);
+
+        Insert_Granade insert_granade = new Insert_Granade();
+        Insert_Gun insert_gun = new Insert_Gun();
+        Insert_Heal insert_heal = new Insert_Heal();
+        Insert_Treasure insert_treasure = new Insert_Treasure();
+
         Player p1 = new Player(6);
         p1.name = "Leon";
         p1.life = 50;
@@ -35,7 +50,10 @@ public class Principal {
         System.out.println("[0] Sair.");
 
         int escolha = sc.nextByte();
+        int escolha_item;
         int i = 0;
+
+        itens.toArray();
 
         while(escolha != 0){
 
@@ -46,15 +64,67 @@ public class Principal {
 
                     if(p1.inventory <= 6 && p1.inventory > 0){
 
-                        sc.nextLine();
+                        //sc.nextLine();
                         System.out.println("Entre com o tipo do item: ");
+                        System.out.println("    [1] Granada");
+                        System.out.println("    [2] Arma");
+                        System.out.println("    [3] Item curável");
+                        System.out.println("    [4] Tesouro");
+                        System.out.println("    [0] Voltar");
+                        escolha_item = sc.nextInt();
 
+                        if(escolha_item == 1){
+                            insert_granade.insert((Granade)itens.get(i));
+                        }
+
+                        else if(escolha_item == 2){
+
+                            for(int j = 0; j < itens2.length; j++){
+
+                                if(itens2[j] instanceof Gun){
+                                    System.out.println("kdkdkdkd");
+                                    Gun itens2Aux = (Gun) itens2[i];
+                                    //insert_gun.insert(itens2Aux);
+                                }
+                            }/*
+                            for (Item m : itens2) {
+                                System.out.println("kdkdkdkd");
+                                if (m instanceof Gun) {
+                                    Gun itens2Aux = (Gun) itens2[i];
+                                    insert_gun.insert(itens2Aux);
+                                }
+
+                            }*/
+
+                            //insert_gun.insert((Gun)itens.get(i));
+                        }
+
+                        else if(escolha_item == 3){
+                            insert_heal.insert((Heal)itens.get(i));
+                        }
+
+                        else if(escolha_item == 4){
+                            insert_treasure.insert((Treasure)itens.get(i));
+                        }
+
+                        else if(escolha_item == 0){
+                            System.out.println();
+                            System.out.println("Entre com uma opção: ");
+                            System.out.println("[1] Comprar um item.");
+                            System.out.println("[2] Vender um item.");
+                            System.out.println("[3] Melhorar um item.");
+                            System.out.println("[4] Mostrar os itens.");
+                            System.out.println("[0] Sair.");
+
+                            escolha = sc.nextByte();
+                        }
 
                     }
 
 
 
                 } catch(Exception e){
+                    System.out.println(e);
 
                 } finally {
 
@@ -65,7 +135,9 @@ public class Principal {
 
             }
 
+            i+= 1;
 
+            break;
         }
 
         /*

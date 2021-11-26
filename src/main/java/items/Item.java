@@ -6,7 +6,12 @@ public class Item {
     public double valueItem;
     public String typeItem;
     public String nameItem;
-    public int idGun;
+    public static int contador;
+
+    public Item(int idItem) {
+        this.idItem = idItem;
+        idItem = contador;
+    }
 
     //Método para mostrar os itens
     public void mostraInfo(){

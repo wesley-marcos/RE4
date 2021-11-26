@@ -4,5 +4,9 @@ public class Treasure extends Item{
 
     public int idTreasures;
     public String nameTreasure;
-    public double valueTreasure;
+
+    public Treasure(int idItem) {
+        super(idItem);
+        idTreasures = idItem;
+    }
 }
