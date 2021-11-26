@@ -22,6 +22,19 @@ public class Principal {
 
         Scanner sc = new Scanner(System.in);
 
+        Merchant m = new Merchant();
+        Buy_Granade bg = new Buy_Granade();
+        Buy_Gun bgun = new Buy_Gun();
+        Buy_Heal bh = new Buy_Heal();
+        Buy_Treasure bt = new Buy_Treasure();
+
+        Sell_Granade sell_granade = new Sell_Granade();
+        Sell_Gun sell_gun = new Sell_Gun();
+        Sell_Heal sell_heal = new Sell_Heal();
+        Sell_Treasure sell_treasure = new Sell_Treasure();
+
+        Tune_up tune_up = new Tune_up();
+
         ArrayList<Item> itens = new ArrayList<>();
 
         Item [] itens2 = itens.toArray(new Item[2]);
@@ -79,24 +92,24 @@ public class Principal {
 
                         else if(escolha_item == 2){
 
-                            for(int j = 0; j < itens2.length; j++){
+                            for(int j = 0; j < 1; j++){
 
-                                if(itens2[j] instanceof Gun){
-                                    System.out.println("kdkdkdkd");
-                                    Gun itens2Aux = (Gun) itens2[i];
-                                    //insert_gun.insert(itens2Aux);
-                                }
-                            }/*
-                            for (Item m : itens2) {
-                                System.out.println("kdkdkdkd");
-                                if (m instanceof Gun) {
-                                    Gun itens2Aux = (Gun) itens2[i];
-                                    insert_gun.insert(itens2Aux);
-                                }
+                                Gun g = new Gun(i);
+                                Item i1 = new Item(i);
+                                g = insert_gun.insert(i1, g);
 
-                            }*/
+                                bgun.buy_gun(i1, g);
 
-                            //insert_gun.insert((Gun)itens.get(i));
+                                System.out.println();
+                                System.out.println("Entre com uma opção: ");
+                                System.out.println("[1] Comprar um item.");
+                                System.out.println("[2] Vender um item.");
+                                System.out.println("[3] Melhorar um item.");
+                                System.out.println("[4] Mostrar os itens.");
+                                System.out.println("[0] Sair.");
+
+                                escolha = sc.nextByte();
+                            }
                         }
 
                         else if(escolha_item == 3){
@@ -121,7 +134,7 @@ public class Principal {
 
                     }
 
-
+                    //i += 1;
 
                 } catch(Exception e){
                     System.out.println(e);
@@ -137,24 +150,10 @@ public class Principal {
 
             i+= 1;
 
-            break;
         }
 
         /*
         System.out.println("Pasetas = " + p1.pasetas);
-
-        Merchant m = new Merchant();
-        Buy_Granade bg = new Buy_Granade();
-        Buy_Gun bgun = new Buy_Gun();
-        Buy_Heal bh = new Buy_Heal();
-        Buy_Treasure bt = new Buy_Treasure();
-
-        Sell_Granade sell_granade = new Sell_Granade();
-        Sell_Gun sell_gun = new Sell_Gun();
-        Sell_Heal sell_heal = new Sell_Heal();
-        Sell_Treasure sell_treasure = new Sell_Treasure();
-
-        Tune_up tune_up = new Tune_up();
 
         Gun g1 = new Gun();
         g1.idGun = 1;

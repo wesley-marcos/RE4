@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Insert_Gun {
 
-    public void insert(ArrayList<Item> item, Gun gun){
+    public Gun insert(Item item, Gun gun){
 
         double fire_power;
         double firing_speed;
@@ -16,15 +16,21 @@ public class Insert_Gun {
         int capacity;
         int range;
 
+        //Gun gun = new Gun(3);
+
         Scanner sc = new Scanner(System.in);
 
+        int j = 0;
+        /*
         for(int j = 0; j < item.size(); j++){
 
             if(item.get(j) instanceof Gun){
-                System.out.println("kdkdkdkd");
-                Gun itens2Aux = (Gun) item.get(j);
+
             }
-        }
+        }*/
+
+        //System.out.println("kdkdkdkd");
+        //Gun itens2Aux = (Gun) item.get(j);
 
         System.out.println("Insira o dano da arma: ");
         fire_power = sc.nextDouble();
@@ -42,6 +48,8 @@ public class Insert_Gun {
         range = sc.nextInt();
         gun.range = range;
 
+        //gun = itens2Aux;
+
         System.out.println("ID = " + gun.idGun + "\n" +
                 "Fire Power = " + gun.fire_power + "\n" +
                 "Firing Speed = " + gun.firing_speed + "\n" +
@@ -50,6 +58,8 @@ public class Insert_Gun {
                 "Range = " + gun.range + "\n" +
                 "Explosion = " + gun.explosion + "\n" +
                 "Capacity = " + gun.capacity_total);
+
+        return gun;
 
     }
 }
