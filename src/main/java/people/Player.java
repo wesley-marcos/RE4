@@ -17,6 +17,7 @@ public class Player {
 
     //Método para atirar
     public void shoot(int num_shoots, Gun gun){
+
         gun.num_bulls_mag -= num_shoots;
     }
 

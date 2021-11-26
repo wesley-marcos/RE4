@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS Belong (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-select * from gun;
-#select * from item;
-#select * from granade;
+#select * from gun;
+select * from item;
+select * from granade;
 #select * from heal;
 #select * from treasure;
