@@ -10,14 +10,14 @@ public class Buy_Gun extends ConnectionDAO {
 
     boolean sucesso = false;
 
-    //Método para comprar uma arma
-    public boolean buy_gun(Item item, Gun gun){
+    // Método para comprar uma arma
+    public boolean buy_gun(Item item, Gun gun) {
 
         connectToDB();
         String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem) values(?, ?, ?, ?)";
         String sql3 = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try{
+        try {
 
             pst = con.prepareStatement(sql);
             pst.setInt(1, item.idItem);
@@ -33,14 +33,14 @@ public class Buy_Gun extends ConnectionDAO {
             pst.setDouble(4, gun.reload_speed);
             pst.setInt(5, gun.capacity);
             pst.setInt(6, gun.range);
-            pst.setInt(7, gun.explosion);
+            pst.setString(7, gun.explosion);
             pst.setInt(8, gun.capacity_total);
             pst.setInt(9, gun.num_bulls_mag);
-            pst.setInt(10,item.idItem);
+            pst.setInt(10, item.idItem);
             pst.execute();
             sucesso = true;
 
-        } catch(SQLException exc){
+        } catch (SQLException exc) {
             System.out.println("Erro: " + exc.getMessage());
             sucesso = false;
 
@@ -48,7 +48,7 @@ public class Buy_Gun extends ConnectionDAO {
             try {
                 con.close();
                 pst.close();
-            } catch(SQLException exc) {
+            } catch (SQLException exc) {
                 System.out.println("Erro: " + exc.getMessage());
             }
         }

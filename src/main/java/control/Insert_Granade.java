@@ -9,14 +9,26 @@ import java.util.Scanner;
 
 public class Insert_Granade {
 
-    public void insert(Granade granade){
+    public Granade insert(Item item, Granade granade) {
 
+        String nameI;
+        String typeI;
+        Double valueI;
         String type;
         double range;
         double explosion;
         String color;
 
         Scanner sc = new Scanner(System.in);
+
+        nameI = "Granade";
+        item.nameItem = nameI;
+
+        typeI = "Granade";
+        item.typeItem = typeI;
+
+        valueI = 500.0;
+        item.valueItem = valueI;
 
         System.out.println("Insira o tipo da granada: ");
         type = sc.nextLine();
@@ -30,5 +42,8 @@ public class Insert_Granade {
         System.out.println("Insira a cor da granada: ");
         color = sc.next();
         granade.color = color;
+
+        sc.close();
+        return granade;
     }
 }
