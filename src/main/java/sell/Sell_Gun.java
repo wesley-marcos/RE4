@@ -1,7 +1,6 @@
 package sell;
 
 import dao.ConnectionDAO;
-import items.Granade;
 import items.Gun;
 import items.Item;
 import people.Player;

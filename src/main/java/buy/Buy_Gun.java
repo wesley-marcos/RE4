@@ -11,9 +11,12 @@ public class Buy_Gun extends ConnectionDAO {
     boolean sucesso = false;
 
     // Método para comprar uma arma
-    public boolean buy_gun(Item item, Gun gun) {
+    public boolean buy_gun(Item item, int id) {
 
         connectToDB();
+
+        Gun gun = new Gun(id);
+
         String sql = "INSERT INTO Item (idItem, valueItem, typeItem, nameItem) values(?, ?, ?, ?)";
         String sql3 = "INSERT INTO Gun (idGun, fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

@@ -1,23 +1,15 @@
-import buy.Buy_Granade;
-import control.Insert_Granade;
+import buy.Buy_Gun;
 import control.Insert_Gun;
-import control.Insert_Heal;
-import control.Insert_Treasure;
 import delete.Delete_gun;
-import items.*;
-import buy.*;
+import items.Gun;
+import items.Item;
 import people.Merchant;
 import people.Player;
-import sell.Sell_Granade;
 import sell.Sell_Gun;
-import sell.Sell_Heal;
-import sell.Sell_Treasure;
 import tune_up.Tune_up;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 
 public class Principal {
 
@@ -26,15 +18,9 @@ public class Principal {
         Scanner sc = new Scanner(System.in);
 
         Merchant m = new Merchant();
-        Buy_Granade bg = new Buy_Granade();
         Buy_Gun bgun = new Buy_Gun();
-        Buy_Heal bh = new Buy_Heal();
-        Buy_Treasure btresure = new Buy_Treasure();
 
-        Sell_Granade sell_granade = new Sell_Granade();
         Sell_Gun sell_gun = new Sell_Gun();
-        Sell_Heal sell_heal = new Sell_Heal();
-        Sell_Treasure sell_treasure = new Sell_Treasure();
 
         Tune_up tune_up = new Tune_up();
 
@@ -42,14 +28,9 @@ public class Principal {
 
         ArrayList<Item> itens = new ArrayList<>();
 
-        Granade g2 = new Granade(2);
+        Item [] itens2 = new Item[6];
 
-        itens.add(g2);
-
-        Insert_Granade insert_granade = new Insert_Granade();
         Insert_Gun insert_gun = new Insert_Gun();
-        Insert_Heal insert_heal = new Insert_Heal();
-        Insert_Treasure insert_treasure = new Insert_Treasure();
 
         Player p1 = new Player(6);
         p1.name = "Leon";
@@ -57,19 +38,18 @@ public class Principal {
         p1.pasetas = 2000;
         p1.inventory = 6;
 
-        System.out.println();
+        System.out.println("");
         System.out.println("Entre com uma opção: ");
-        System.out.println("[1] Comprar um item.");
-        System.out.println("[2] Vender um item.");
-        System.out.println("[3] Melhorar um item.");
-        System.out.println("[4] Mostrar os itens.");
+        System.out.println("[1] Comprar uma arma.");
+        System.out.println("[2] Vender uma arma.");
+        System.out.println("[3] Melhorar uma arma.");
+        System.out.println("[4] Mostrar as armas.");
         System.out.println("[0] Sair.");
 
         int escolha = sc.nextByte();
         int escolha_item;
         int i = 0;
-
-        itens.toArray();
+        int k = 0;
 
         while (escolha != 0) {
 
@@ -79,12 +59,8 @@ public class Principal {
 
                     if (p1.inventory > 0) {
 
-                        // sc.nextLine();
                         System.out.println("Entre com o tipo do item: ");
-                        System.out.println("    [1] Granada");
-                        System.out.println("    [2] Arma");
-                        System.out.println("    [3] Item curável");
-                        System.out.println("    [4] Tesouro");
+                        System.out.println("    [1] Comprar");
                         System.out.println("    [0] Voltar");
                         escolha_item = sc.nextInt();
 
@@ -92,52 +68,23 @@ public class Principal {
 
                             for (int j = 0; j < 1; j++) {
 
-                                Granade g = new Granade(i);
-                                Item i2 = new Item(i);
-                                g = insert_granade.insert(i2, g);
+                                Item item = new Gun(i);
 
-                                bg.buy_granade(i2, g);
+                                item = insert_gun.insert(itens2[j], j);
+                                item.typeItem = "Sla";
 
-                                p1.inventory -= 1;
-                            }
-                        }
+                                for(int t = 0; t < itens2.length; t++){
 
-                        else if (escolha_item == 2) {
+                                    if(itens2[t] == null){
+                                        itens2[t] = item;
+                                    }
+                                }
 
-                            for (int j = 0; j < 1; j++) {
 
-                                Gun g = new Gun(i);
-                                Item i1 = new Item(i);
-                                g = insert_gun.insert(i1, g);
 
-                                bgun.buy_gun(i1, g);
-                                p1.inventory -= 1;
-                            }
-                        }
+                                bgun.buy_gun(itens2[j], j);
 
-                        else if (escolha_item == 3) {
 
-                            for (int j = 0; j < 1; j++) {
-
-                                Heal g = new Heal(i);
-                                Item i3 = new Item(i);
-                                g = insert_heal.insert(i3, g);
-
-                                bh.buy_heal(i3, g);
-                                p1.inventory -= 1;
-                            }
-                        }
-
-                        else if (escolha_item == 4) {
-
-                            for (int j = 0; j < 1; j++) {
-
-                                Treasure tr = new Treasure(i);
-                                Item i4 = new Item(i);
-                                tr = insert_treasure.insert(i4, tr);
-
-                                btresure.buy_treasure(i4, tr);
-                                p1.inventory -= 1;
                             }
                         }
 
@@ -150,7 +97,7 @@ public class Principal {
                             System.out.println("[4] Mostrar os itens.");
                             System.out.println("[0] Sair.");
 
-                            escolha = sc.nextByte();
+                            escolha = sc.nextInt();
                         }
 
                     }
@@ -160,6 +107,7 @@ public class Principal {
 
                 } finally {
                     i += 1;
+
                 }
 
             } else if (escolha == 2) {
@@ -173,23 +121,67 @@ public class Principal {
                     escolha_item = sc.nextInt();
 
                     if (escolha_item == 1) {
-                        for (int j = 0; j < 1; j++) {
-                            Item i1 = new Item(i);
-                            dGun.buscar(i1);
+                        for (int j = 0; j < itens2.length; j++) {
+                            Item i1 = new Item(j);
+                            Item i1Aux = new Item(j);
+                            Gun g = new Gun(j);
+                            i1.valueItem = 1500;
+
+                            System.out.println("Aqui entrou");
+
+                            sell_gun.sell_gun(i1Aux, g, p1);
+
+                            if(itens2[j] instanceof Gun){
+                                System.out.println("Instanceof");
+                                g = (Gun)itens.get(j);
+
+                                i1Aux = dGun.buscar(itens2[j]);
+                            }
+
+                            System.out.println("Entrou na parte de venda");
                         }
+
+
+                    }
+
+                    else if (escolha_item == 0) {
+                        System.out.println();
+                        System.out.println("Entre com uma opção: ");
+                        System.out.println("[1] Comprar um item.");
+                        System.out.println("[2] Vender um item.");
+                        System.out.println("[3] Melhorar um item.");
+                        System.out.println("[4] Mostrar os itens.");
+                        System.out.println("[0] Sair.");
+
+                        escolha = sc.nextByte();
                     }
 
                 } catch (Exception e) {
                     System.out.println(e);
 
                 } finally {
+                    i += 1;
+                }
+            }
+
+            else if(escolha ==  3){
+
+                System.out.println("Entre com uma opção de upgrade: ");
+                System.out.println("[1] Fire Power.");
+                System.out.println("[2] Firing Speed.");
+                System.out.println("[3] Reload Speed.");
+                System.out.println("[4] Capacity.");
+                System.out.println("[0] Sair.");
+                escolha_item = sc.nextInt();
+
+                if(escolha_item == 1){
 
                 }
             }
 
-
+            i += 1;
 
         }
-        // sc.close();
+        // sc.close();*/
     }
 }

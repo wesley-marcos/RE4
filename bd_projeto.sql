@@ -57,11 +57,10 @@ CREATE TABLE IF NOT EXISTS Gun (
   reload_speed DOUBLE NOT NULL,
   capacity INT NOT NULL,
   rangeGun INT NOT NULL,
-  explosion INT NOT NULL,
+  explosion VARCHAR(10) NOT NULL,
   capacity_total INT NOT NULL,
   num_bulls_mag INT NOT NULL,
   idItem INT NOT NULL,
-  Item_idItem INT,
   PRIMARY KEY (idGun),  
   CONSTRAINT fk_Gun_Item1
     FOREIGN KEY (idItem)
@@ -70,53 +69,6 @@ CREATE TABLE IF NOT EXISTS Gun (
     ON UPDATE NO ACTION
   );
   
--- -----------------------------------------------------
--- Criando Tabela "Treasure"
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Treasure (
-  idTreasures INT NOT NULL,
-  nameTreasure VARCHAR(45) NOT NULL,
-  idItem INT NOT NULL,
-  PRIMARY KEY (idTreasures),
-  CONSTRAINT fk_Treasures_Item1
-    FOREIGN KEY (idItem)
-    REFERENCES Item (idItem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
--- -----------------------------------------------------
--- Criando Tabela "Heal"
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Heal (
-  idHeal INT NOT NULL,
-  typeHeal VARCHAR(45) NOT NULL,
-  effect VARCHAR(45) NOT NULL,
-  idItem INT NOT NULL,
-  PRIMARY KEY (idHeal),
-  CONSTRAINT fk_Heal_Item1
-    FOREIGN KEY (idItem)
-    REFERENCES Item (idItem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
--- -----------------------------------------------------
--- Criando Tabela "Granade"
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS Granade (
-  idGranade INT NOT NULL,
-  typeGranade VARCHAR(45) NOT NULL,
-  rangeGranade DOUBLE NOT NULL,
-  explosion_power DOUBLE NOT NULL,
-  color VARCHAR(15) NOT NULL,
-  idItem INT NOT NULL,
-  PRIMARY KEY (idGranade),
-  CONSTRAINT fk_Granade_Item
-    FOREIGN KEY (idItem)
-    REFERENCES Item (idItem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
 -- -----------------------------------------------------
 -- Criando Tabela "Belong"
 -- -----------------------------------------------------
@@ -135,8 +87,5 @@ CREATE TABLE IF NOT EXISTS Belong (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-#select * from gun;
+select * from gun;
 select * from item;
-select * from granade;
-#select * from heal;
-#select * from treasure;

@@ -2,13 +2,11 @@ package control;
 
 import items.Gun;
 import items.Item;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Insert_Gun {
 
-    public Gun insert(Item item, Gun gun) {
+    public Item insert(Item i, int id) {
 
         double fire_power;
         double firing_speed;
@@ -19,20 +17,24 @@ public class Insert_Gun {
 
         String nameI;
         String typeI;
-        Double valueI;
+        double valueI;
 
-        // Gun gun = new Gun(3);
+        Item item = new Item(id);
+        Gun gun = new Gun(item.idItem);
+
 
         Scanner sc = new Scanner(System.in);
 
-        nameI = "Fuzil";
+        System.out.println("Insira o nome da arma: ");
+        nameI = sc.nextLine();
         item.nameItem = nameI;
 
-        typeI = "Arma";
-        item.typeItem = typeI;
 
         valueI = 1500.0;
         item.valueItem = valueI;
+
+        typeI = "Arma";
+        item.typeItem = typeI;
 
         System.out.println("Insira o dano da arma: ");
         fire_power = sc.nextDouble();
@@ -63,8 +65,8 @@ public class Insert_Gun {
                 "Range = " + gun.range + "\n" +
                 "Explosion = " + gun.explosion + "\n");
 
-        sc.close();
-        return gun;
+        //sc.close();
+        return item;
 
     }
 }
