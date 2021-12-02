@@ -15,19 +15,34 @@ public class Buy_Gun extends ConnectionDAO {
 
         connectToDB();
 
-        //Item item = new Item(gun.idItem);
-        Gun gun = new Gun(id);
-        //item.idItem = id;
 
-        String sql = "INSERT INTO Item (valueItem, typeItem, nameItem) values(?, ?, ?)";
+        Gun gun = new Gun(id);
+        Item item2 = new Item(gun.idItem);
+
+        for(int j =0; j < 1; j++){
+
+            if(item instanceof Gun){
+                Gun gunAux = (Gun) item;
+                gun = gunAux;
+            }
+
+        }
+
+        item2.idItem = id;
+
+        String sql = "INSERT INTO Item (idItem, typeItem, nameItem, valueItem) values(?, ?, ?, ?)";
         String sql3 = "INSERT INTO Gun (fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
             pst = con.prepareStatement(sql);
-            pst.setDouble(1, item.valueItem);
+            pst.setInt(1, item.idItem);
             pst.setString(2, item.typeItem);
             pst.setString(3, item.nameItem);
+            pst.setDouble(4, item.valueItem);
+            pst.execute();
+
+            //String sql3 = "INSERT INTO Gun (fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             pst = con.prepareStatement(sql3);
             pst.setDouble(1, gun.fire_power);

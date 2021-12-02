@@ -5,8 +5,10 @@ import items.Gun;
 import items.Item;
 import people.Merchant;
 import people.Player;
+import search.List_guns;
 import sell.Sell_Gun;
 import tune_up.Tune_up;
+import tune_up.Up_insert;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,9 +26,13 @@ public class Principal {
 
         Tune_up tune_up = new Tune_up();
 
+        Up_insert up_insert = new Up_insert();
+
         Delete_gun dGun = new Delete_gun();
 
-        ArrayList<Item> itens = new ArrayList<>();
+        ArrayList<Item> listaDeitens = new ArrayList<>();
+
+        List_guns list = new List_guns();
 
         Item [] itens2 = new Item[6];
 
@@ -66,19 +72,19 @@ public class Principal {
 
                         if (escolha_item == 1) {
 
+                            k += 1;
+
                             Item item = new Item(k);
+
 
                             for (int j = 0; j < itens2.length; j++) {
 
 
                                 if(itens2[j] == null){
+
                                     itens2[j] = insert_gun.insert(item, k);
 
                                     bgun.buy_gun(itens2[j], j);
-
-                                    System.out.println("Inserção feita com sucesso!");
-
-
 
                                     break;
                                 }
@@ -115,22 +121,18 @@ public class Principal {
 
                     if (escolha_item == 1) {
 
+                        boolean venda = false;
+
                         for (int j = 0; j < itens2.length; j++) {
-                            Item i1 = new Item(j);
-                            Item i1Aux = new Item(j);
-                            Gun g = new Gun(j);
-                            i1.valueItem = 1500;
-
-                            System.out.println("Aqui entrou");
-
 
                             if(itens2[j] != null) {
-                                sell_gun.sell_gun(itens2[j], p1);
+                                venda = sell_gun.sell_gun(itens2[j], p1);
                             }
-
-                            System.out.println("Entrou na parte de venda");
                         }
 
+                        if(venda){
+                            System.out.println("Vendeu porra");
+                        }
 
                     }
 
@@ -156,16 +158,86 @@ public class Principal {
 
             else if(escolha ==  3){
 
-                System.out.println("Entre com uma opção de upgrade: ");
-                System.out.println("[1] Fire Power.");
-                System.out.println("[2] Firing Speed.");
-                System.out.println("[3] Reload Speed.");
-                System.out.println("[4] Capacity.");
-                System.out.println("[0] Sair.");
+                try{
+
+                    System.out.println("Entre com uma opção de venda: ");
+                    System.out.println("[1] Melhorar.");
+                    System.out.println("[0] Sair.");
+                    escolha_item = sc.nextInt();
+
+                    if(escolha_item == 1){
+
+                        boolean melhorar = false;
+
+                        for(int j = 0; j < itens2.length; j++) {
+
+                            if(itens2[j] instanceof Gun){
+                                Gun gun = (Gun) itens2[j];
+                                Gun gun2;
+                                gun2 = up_insert.insert_up(gun);
+                                melhorar = tune_up.upgrade(gun2);
+                            }
+                        }
+
+                        if(melhorar){
+                            System.out.println("Update feito com sucesso!");
+                        }
+
+                    }
+
+                    else if (escolha_item == 0) {
+                        System.out.println();
+                        System.out.println("Entre com uma opção: ");
+                        System.out.println("[1] Comprar um item.");
+                        System.out.println("[2] Vender um item.");
+                        System.out.println("[3] Melhorar um item.");
+                        System.out.println("[4] Mostrar os itens.");
+                        System.out.println("[0] Sair.");
+
+                        escolha = sc.nextByte();
+                    }
+
+                } catch(Exception e){
+                    System.out.println(e);
+                }
+            }
+
+            else if(escolha == 4){
+
+                System.out.println("\n Você deseja ver todas as armas? ");
+                System.out.println("     [1] Sim.");
+                System.out.println("     [0] Não.");
                 escolha_item = sc.nextInt();
 
                 if(escolha_item == 1){
 
+                    try{
+
+                        for(int j = 0; j < itens2.length; j++){
+
+                            if(itens2[j] != null){
+
+                                list.buscar_arma(j);
+
+                            }
+                        }
+
+                    } catch(Exception e){
+                        System.out.println(e);
+                    }
+                }
+
+                else if(escolha_item == 0){
+
+                    System.out.println();
+                    System.out.println("\n Entre com uma opção: ");
+                    System.out.println("[1] Comprar um item.");
+                    System.out.println("[2] Vender um item.");
+                    System.out.println("[3] Melhorar um item.");
+                    System.out.println("[4] Mostrar os itens.");
+                    System.out.println("[0] Sair.");
+
+                    escolha = sc.nextByte();
                 }
             }
 

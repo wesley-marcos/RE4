@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Player (
 CREATE TABLE IF NOT EXISTS Item(
   idItem INT NOT NULL AUTO_INCREMENT,
   valueItem DOUBLE NOT NULL,
-  typeItem VARCHAR(45) NOT NULL,
+  typeItem VARCHAR(45),
   nameItem VARCHAR(45) NOT NULL,
   idMerchant INT,
   PRIMARY KEY (idItem),
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS Gun (
   num_bulls_mag INT,
   idItem INT NOT NULL,
   PRIMARY KEY (idGun),  
-  CONSTRAINT fk_Gun_Item1
+  CONSTRAINT fk_Gun_Item
     FOREIGN KEY (idItem)
     REFERENCES Item (idItem)
     ON DELETE CASCADE

@@ -14,12 +14,11 @@ public class Sell_Gun extends ConnectionDAO {
     //Método para vender uma arma
     public boolean sell_gun(Item item, Player player){
 
-        System.out.println("Sell gun 1");
         connectToDB();
-        String sql = "DELETE FROM Gun WHERE idGun = ?";
+        String sql = "DELETE FROM Item WHERE idItem = ?;";
 
         try{
-            System.out.println("Sell gun try");
+
             pst = con.prepareStatement(sql);
             pst.setInt(1, item.idItem);
             pst.execute();

@@ -37,8 +37,8 @@ public class Insert_Gun {
         nameI = sc.nextLine();
         gun.nameItem = nameI;
 
-
-        valueI = 1500.0;
+        System.out.println("Insira o valor do item: ");
+        valueI = sc.nextDouble();
         gun.valueItem = valueI;
 
         typeI = "Arma";
