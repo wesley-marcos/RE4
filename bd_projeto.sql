@@ -9,14 +9,14 @@ USE RE4;
 CREATE TABLE IF NOT EXISTS Merchant(
    idMerchant INT NOT NULL,
    items INT NOT NULL,
-   PRIMARY KEY (`idMerchant`)
+   PRIMARY KEY (idMerchant)
 );
 
 -- -----------------------------------------------------
 -- Criando Tabela "Player"
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Player (
-  idPlayer INT NOT NULL,
+  idPlayer INT NOT NULL AUTO_INCREMENT,
   namePlayer VARCHAR(45) NOT NULL,
   life DOUBLE NOT NULL,
   pasetas DOUBLE NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Player (
 -- Criando Tabela "Item"
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Item(
-  idItem INT NOT NULL,
+  idItem INT NOT NULL AUTO_INCREMENT,
   valueItem DOUBLE NOT NULL,
   typeItem VARCHAR(45) NOT NULL,
   nameItem VARCHAR(45) NOT NULL,
@@ -51,22 +51,22 @@ CREATE TABLE IF NOT EXISTS Item(
 -- Criando Tabela "Gun"
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Gun (
-  idGun INT NOT NULL,
+  idGun INT NOT NULL AUTO_INCREMENT,
   fire_power DOUBLE NOT NULL,
   firing_speed DOUBLE NOT NULL,
   reload_speed DOUBLE NOT NULL,
   capacity INT NOT NULL,
   rangeGun INT NOT NULL,
-  explosion VARCHAR(10) NOT NULL,
-  capacity_total INT NOT NULL,
-  num_bulls_mag INT NOT NULL,
+  explosion VARCHAR(10),
+  capacity_total INT,
+  num_bulls_mag INT,
   idItem INT NOT NULL,
   PRIMARY KEY (idGun),  
   CONSTRAINT fk_Gun_Item1
     FOREIGN KEY (idItem)
     REFERENCES Item (idItem)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
   );
   
 -- -----------------------------------------------------

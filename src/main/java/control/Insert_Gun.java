@@ -2,16 +2,26 @@ package control;
 
 import items.Gun;
 import items.Item;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Insert_Gun {
 
-    public Item insert(Item i, int id) {
+    public static int contador = 0;
+
+    //ArrayList<Item> itens = new ArrayList<>();
+    Item [] itens = new Item[6];
+    boolean sucesso = false;
+
+    public Gun insert(Item item, int id) {
 
         double fire_power;
         double firing_speed;
         double reload_speed;
         int capacity;
+        int capacity_total;
+        int num_bul_mag;
         int range;
         String explosion;
 
@@ -19,22 +29,20 @@ public class Insert_Gun {
         String typeI;
         double valueI;
 
-        Item item = new Item(id);
-        Gun gun = new Gun(item.idItem);
-
-
+        int i = 0;
+        Gun gun = new Gun(id);
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("================ Entre com os dados da arma ================");
         System.out.println("Insira o nome da arma: ");
         nameI = sc.nextLine();
-        item.nameItem = nameI;
+        gun.nameItem = nameI;
 
 
         valueI = 1500.0;
-        item.valueItem = valueI;
+        gun.valueItem = valueI;
 
         typeI = "Arma";
-        item.typeItem = typeI;
+        gun.typeItem = typeI;
 
         System.out.println("Insira o dano da arma: ");
         fire_power = sc.nextDouble();
@@ -48,12 +56,27 @@ public class Insert_Gun {
         System.out.println("Insira a quantidade máxima de balas no pente: ");
         capacity = sc.nextInt();
         gun.capacity = capacity;
+        System.out.println("Insira o número total de balas guardadas: ");
+        capacity_total = sc.nextInt();
+        gun.capacity_total = capacity_total;
+        System.out.println("Insira o número de balas no pente: ");
+        num_bul_mag = sc.nextInt();
+        gun.num_bulls_mag = num_bul_mag;
         System.out.println("Insira o alcance de tiro: ");
         range = sc.nextInt();
         gun.range = range;
         System.out.println("A arma é explosiva? ");
         explosion = sc.next();
         gun.explosion = explosion;
+
+
+        /*
+        for(int j = 0; j < itens.length; j++){
+
+            if(itens[j] == null){
+                itens[j] = item;
+            }
+        }*/
 
         // gun = itens2Aux;
 
@@ -66,7 +89,10 @@ public class Insert_Gun {
                 "Explosion = " + gun.explosion + "\n");
 
         //sc.close();
-        return item;
+
+        i += 1;
+
+        return gun;
 
     }
 }

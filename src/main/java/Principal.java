@@ -66,25 +66,24 @@ public class Principal {
 
                         if (escolha_item == 1) {
 
-                            for (int j = 0; j < 1; j++) {
+                            Item item = new Item(k);
 
-                                Item item = new Gun(i);
+                            for (int j = 0; j < itens2.length; j++) {
 
-                                item = insert_gun.insert(itens2[j], j);
-                                item.typeItem = "Sla";
 
-                                for(int t = 0; t < itens2.length; t++){
+                                if(itens2[j] == null){
+                                    itens2[j] = insert_gun.insert(item, k);
 
-                                    if(itens2[t] == null){
-                                        itens2[t] = item;
-                                    }
+                                    bgun.buy_gun(itens2[j], j);
+
+                                    System.out.println("Inserção feita com sucesso!");
+
+
+
+                                    break;
                                 }
 
-
-
-                                bgun.buy_gun(itens2[j], j);
-
-
+                                k += 1;
                             }
                         }
 
@@ -105,22 +104,17 @@ public class Principal {
                 } catch (Exception e) {
                     System.out.println(e);
 
-                } finally {
-                    i += 1;
-
                 }
 
             } else if (escolha == 2) {
                 try {
                     System.out.println("Entre com uma opção de venda: ");
-                    System.out.println("[1] Gun.");
-                    System.out.println("[2] Heal.");
-                    System.out.println("[3] Treasure.");
-                    System.out.println("[4] Granade.");
+                    System.out.println("[1] Vender.");
                     System.out.println("[0] Sair.");
                     escolha_item = sc.nextInt();
 
                     if (escolha_item == 1) {
+
                         for (int j = 0; j < itens2.length; j++) {
                             Item i1 = new Item(j);
                             Item i1Aux = new Item(j);
@@ -129,13 +123,9 @@ public class Principal {
 
                             System.out.println("Aqui entrou");
 
-                            sell_gun.sell_gun(i1Aux, g, p1);
 
-                            if(itens2[j] instanceof Gun){
-                                System.out.println("Instanceof");
-                                g = (Gun)itens.get(j);
-
-                                i1Aux = dGun.buscar(itens2[j]);
+                            if(itens2[j] != null) {
+                                sell_gun.sell_gun(itens2[j], p1);
                             }
 
                             System.out.println("Entrou na parte de venda");
@@ -182,6 +172,5 @@ public class Principal {
             i += 1;
 
         }
-        // sc.close();*/
     }
 }

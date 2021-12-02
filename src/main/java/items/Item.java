@@ -10,6 +10,7 @@ public class Item {
 
     public Item(int idItem) {
         this.idItem = idItem;
+        contador++;
         idItem = contador;
     }
 
