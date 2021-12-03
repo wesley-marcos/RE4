@@ -8,14 +8,15 @@ import java.sql.SQLException;
 
 public class Buy_Gun extends ConnectionDAO {
 
-    boolean sucesso = false;
+    boolean sucesso = false; //Variável de retorno
 
     // Método para comprar uma arma
     public boolean buy_gun(Item item, int id) {
 
+        //Conectando ao Banco de Dados
         connectToDB();
 
-
+        //Instâncias locais
         Gun gun = new Gun(id);
         Item item2 = new Item(gun.idItem);
 
@@ -30,21 +31,18 @@ public class Buy_Gun extends ConnectionDAO {
 
         item2.idItem = id;
 
-        String sql = "INSERT INTO Item (idItem, typeItem, nameItem, valueItem) values(?, ?, ?, ?)";
-        String sql3 = "INSERT INTO Gun (fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Item (idItem, nameItem, valueItem) values(?, ?, ?)";
+        String sql2 = "INSERT INTO Gun (fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
             pst = con.prepareStatement(sql);
             pst.setInt(1, item.idItem);
-            pst.setString(2, item.typeItem);
-            pst.setString(3, item.nameItem);
-            pst.setDouble(4, item.valueItem);
+            pst.setString(2, item.nameItem);
+            pst.setDouble(3, item.valueItem);
             pst.execute();
 
-            //String sql3 = "INSERT INTO Gun (fire_power, firing_speed, reload_speed, capacity, rangeGun, explosion, capacity_total, num_bulls_mag, idItem) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-            pst = con.prepareStatement(sql3);
+            pst = con.prepareStatement(sql2);
             pst.setDouble(1, gun.fire_power);
             pst.setDouble(2, gun.firing_speed);
             pst.setDouble(3, gun.reload_speed);

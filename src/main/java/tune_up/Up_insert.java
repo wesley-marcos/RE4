@@ -1,30 +1,29 @@
 package tune_up;
 
 import items.Gun;
-import items.Item;
-
 import java.util.Scanner;
 
 public class Up_insert {
 
+    //Método para pegar os dados de entrada do usuário para atualizar os dados desejáveis, retornando os dados inseridos em uma arma
     public Gun insert_up(Gun gun) {
 
-        double fire_power;
-        double firing_speed;
-        double reload_speed;
+        //Atributos
+        int i = 0;
         int capacity;
         int capacity_total;
         int num_bul_mag;
         int range;
-        String explosion;
-
-        String nameI;
-        String typeI;
         double valueI;
+        double fire_power;
+        double firing_speed;
+        double reload_speed;
+        String nameI;
 
-        int i = 0;
-        //Gun gun = new Gun(id);
+        //Instância
         Scanner sc = new Scanner(System.in);
+
+        //Inserção dos dados pelo usuário
         System.out.println("================ Entre com o item à ser atualizado ================");
         System.out.println(" ");
         System.out.println("[1] Gun's name.");
@@ -39,7 +38,6 @@ public class Up_insert {
         System.out.println("[0] Sair.");
 
         int escolha = sc.nextByte();
-
 
         while(escolha != 0){
 

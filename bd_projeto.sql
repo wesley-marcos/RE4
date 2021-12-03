@@ -8,7 +8,6 @@ USE RE4;
 
 CREATE TABLE IF NOT EXISTS Merchant(
    idMerchant INT NOT NULL,
-   items INT NOT NULL,
    PRIMARY KEY (idMerchant)
 );
 
@@ -18,7 +17,6 @@ CREATE TABLE IF NOT EXISTS Merchant(
 CREATE TABLE IF NOT EXISTS Player (
   idPlayer INT NOT NULL AUTO_INCREMENT,
   namePlayer VARCHAR(45) NOT NULL,
-  life DOUBLE NOT NULL,
   pasetas DOUBLE NOT NULL,
   inventory INT NOT NULL,
   idMerchant INT NOT NULL,
@@ -35,17 +33,11 @@ CREATE TABLE IF NOT EXISTS Player (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS Item(
   idItem INT NOT NULL AUTO_INCREMENT,
-  valueItem DOUBLE NOT NULL,
-  typeItem VARCHAR(45),
   nameItem VARCHAR(45) NOT NULL,
-  idMerchant INT,
-  PRIMARY KEY (idItem),
-  CONSTRAINT fk_Item_Merchant1
-    FOREIGN KEY (idMerchant)
-    REFERENCES Merchant (idMerchant)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
-    );
+  valueItem DOUBLE NOT NULL,
+  idPlayer INT,
+  PRIMARY KEY (idItem)
+ );
 
 -- -----------------------------------------------------
 -- Criando Tabela "Gun"
@@ -87,5 +79,17 @@ CREATE TABLE IF NOT EXISTS Belong (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-select * from gun;
-select * from item;
+
+-- -----------------------------------------------------
+-- Setando Valores Estáticos
+-- -----------------------------------------------------
+INSERT INTO Merchant VALUES (1);
+INSERT INTO Player VALUES (1, "Leon", 2000, 6, 1);
+INSERT INTO Item VALUES (1, "Knife", 0, 1);
+INSERT INTO Belong VALUES (1, 1);
+
+select * from Merchant;
+select * from Player;
+select * from Item;
+select * from Belong;
+

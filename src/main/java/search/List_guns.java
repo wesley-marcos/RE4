@@ -3,19 +3,20 @@ package search;
 import dao.ConnectionDAO;
 import items.Gun;
 import items.Item;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class List_guns extends ConnectionDAO {
 
-    boolean sucesso = false;
-
+    //Métdo para fazer a busca pela armas no vetor principal
     public ArrayList<Item> buscar_arma(int k){
 
+        //Atributos
         ArrayList<Item> listaDeitens = new ArrayList<>();
         ArrayList<Gun> listaDeGuns = new ArrayList<>();
+        int i = k;
 
+        //Conectando ao Banco de Dados
         connectToDB();
 
         String sql = "Select * from gun";
@@ -33,22 +34,20 @@ public class List_guns extends ConnectionDAO {
                 aux.nameItem = rs.getString("nameItem");
                 aux.valueItem = rs.getDouble("valueItem");
 
-                System.out.println(" \n ==================== CARACTERÍSTICAS DA ARMA " + k + " ==================== \n");
+
+                System.out.println(" \n ==================== CARACTERÍSTICAS DA ARMA " + i + " ==================== \n");
                 System.out.println(
                         "Nome da Arma = " + aux.nameItem + "\n" +
                         "Valor Monetário da Arma = " + aux.valueItem
                 );
-
-                //listaDeitens.add(aux);
             }
 
             st = con.createStatement();
             rs = st.executeQuery(sql);
 
             while(rs.next()) {
+
                 Gun gunAux = new Gun(0);
-                //gunAux.nameItem = rs.getString("nameItem");
-                //gunAux.valueItem = rs.getDouble("valueItem");
                 gunAux.fire_power = rs.getDouble("fire_power");
                 gunAux.firing_speed = rs.getDouble("firing_speed");
                 gunAux.reload_speed = rs.getDouble("reload_speed");
@@ -58,7 +57,6 @@ public class List_guns extends ConnectionDAO {
                 gunAux.num_bulls_mag = rs.getInt("num_bulls_mag");
 
                 System.out.println(
-
                                 "ID = " + gunAux.idGun + "\n" +
                                 "Poder de Fogo = " + gunAux.fire_power + "\n" +
                                 "Velocidade de Disparo = " + gunAux.fire_power + "\n" +
@@ -71,27 +69,34 @@ public class List_guns extends ConnectionDAO {
                 );
             }
 
-            for(int i = 0; i < listaDeGuns.size(); i++){
+            for(int q = 0; q < listaDeGuns.size(); q++){
 
-                if(listaDeitens.get(i) instanceof Gun){
-                    Gun gunAux = (Gun) listaDeitens.get(i);
+                if(listaDeitens.get(q) instanceof Gun){
+                    Gun gunAux = (Gun) listaDeitens.get(q);
                     listaDeitens.add(gunAux);
                 }
             }
 
-            sucesso = true;
 
-        } catch (SQLException ex) {
+        }
+
+        catch (SQLException ex) {
             System.out.println("Erro = " + ex.getMessage());
-            sucesso = false;
-        } finally {
+        }
+
+        finally {
+
             try {
                 con.close();
                 st.close();
-            } catch (SQLException exc) {
+                i += 1;
+            }
+
+            catch (SQLException exc) {
                 System.out.println("Erro: " + exc.getMessage());
             }
         }
+
         return listaDeitens;
     }
 }

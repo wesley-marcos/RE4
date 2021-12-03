@@ -2,18 +2,18 @@ package tune_up;
 
 import dao.ConnectionDAO;
 import items.Gun;
-import items.Item;
-
 import java.sql.SQLException;
 
 public class Tune_up extends ConnectionDAO {
 
-    boolean sucesso = false;
+    boolean sucesso = false; //Variável de retorno
 
     //Método para upar uma arma
     public boolean upgrade(Gun gun){
 
+        //Conectando ao Banco de Dados
         connectToDB();
+
         String sql = "UPDATE Gun SET fire_power = ?, firing_speed = ?, reload_speed = ?, capacity = ? WHERE idGun = ?";
 
         try{
@@ -33,10 +33,13 @@ public class Tune_up extends ConnectionDAO {
             sucesso = false;
 
         } finally {
+
             try {
                 con.close();
                 pst.close();
-            } catch(SQLException exc) {
+            }
+
+            catch(SQLException exc) {
                 System.out.println("Erro: " + exc.getMessage());
             }
         }
