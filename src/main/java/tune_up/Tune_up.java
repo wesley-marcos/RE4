@@ -26,8 +26,6 @@ public class Tune_up extends ConnectionDAO {
             pst.execute();
             sucesso = true;
 
-            System.out.println("Fire Power (ATT) = " + gun.fire_power);
-
         } catch(SQLException exc){
             System.out.println("Erro: " + exc.getMessage());
             sucesso = false;

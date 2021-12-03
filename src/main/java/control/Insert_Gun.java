@@ -67,14 +67,6 @@ public class Insert_Gun {
         explosion = sc.next();
         gun.explosion = explosion;
 
-        System.out.println("ID = " + gun.idGun + "\n" +
-                "Fire Power = " + gun.fire_power + "\n" +
-                "Firing Speed = " + gun.firing_speed + "\n" +
-                "Reload Speed = " + gun.reload_speed + "\n" +
-                "Capacity = " + gun.capacity + "\n" +
-                "Range = " + gun.range + "\n" +
-                "Explosion = " + gun.explosion + "\n");
-
         return gun;
 
     }

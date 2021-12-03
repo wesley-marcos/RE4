@@ -85,11 +85,12 @@ CREATE TABLE IF NOT EXISTS Belong (
 -- -----------------------------------------------------
 INSERT INTO Merchant VALUES (1);
 INSERT INTO Player VALUES (1, "Leon", 2000, 6, 1);
-INSERT INTO Item VALUES (1, "Knife", 0, 1);
+INSERT INTO Item VALUES (1, "Red 9", 0, 1);
+INSERT INTO Gun VALUES (1, 6.5, 1.8, 3.2, 22, 9, "Não", 200, 20, 1);
 INSERT INTO Belong VALUES (1, 1);
 
 select * from Merchant;
 select * from Player;
 select * from Item;
 select * from Belong;
-
+select * from gun;
